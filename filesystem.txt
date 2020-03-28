@@ -1,0 +1,34 @@
+To change file system
+
+mkfs.xfs /dev/nvme9n1
+
+To check disks
+lsblk
+
+Create the paths
+mkdir -d /hana/log/RHP
+
+Get the UUID
+blkid /dev/nvme9n1
+
+Update in fstab
+vi /etc/fstab
+
+UUID=123456jvbjergh6747848t4 /hana/log/RHP  xfs  defaults 0 0 
+and save
+To mount the volume to path
+
+mount -a
+
+To check if mount happended
+lsblk
+
+TO SETUP A HOST NAME 
+hostnamectl set-hostname (hostname)
+
+Hostname -f (to see full hostname)
+
+To SEE TIME ZONE
+timedatectl(Current timezone)
+
+timedatectl list-timezones(list)

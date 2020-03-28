@@ -1,0 +1,8 @@
+For disk space increase:
+
+growpart /dev/xvda 1
+or
+resize2fs /dev/xvda 1
+or
+xfs_growfs -d /
+

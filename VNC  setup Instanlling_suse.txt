@@ -1,0 +1,16 @@
+
+sudo -i
+zypper update
+zypper -n install -t pattern x11 gnome-basic
+cd ~
+pwd & ls -al
+vncpasswd
+
+pwd & ls -al
+cd .vnc/
+pwd & ls -al
+cat passwd
+netstat -ntpl
+vncserver :1 -geometry 1920x1080 -depth 24
+netstat -ntpl
+

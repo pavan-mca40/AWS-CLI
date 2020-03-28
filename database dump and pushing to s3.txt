@@ -1,0 +1,24 @@
+online_corr : 137.65(124 GB) (Completed)
+online_corr_bck : 41.62(29 GB) (Completed)
+online_corr_final : 81.73(74 GB) (Completed )
+online_photo_corr : 8.75 (completed)
+
+
+szie of file or folder in linux:
+
+du -sh (file name)
+
+
+Prod path(/home/ec2-user/dbdumps)
+
+aws s3 cp online_corr_final.sql s3://nrcrcdbdump/online_corr_final_prod_20-12-2019/online_corr_final.sql
+
+aws s3 cp online_corr_bck.sql s3://nrcrcdbdump/online_corr_bck_prod_20-12-2019/online_corr_bck.sql
+
+aws s3 cp online_corr.sql s3://nrcrcdbdump/online_corr_prod_20-12-2019/online_corr.sql
+
+
+UAT path(/root/proddumps)
+
+aws s3 cp draft_schema.sql s3://nrcrcdbdump/draft_schema-UAT-20-12-2019/draft_schema.sql(completed)
+

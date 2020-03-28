@@ -1,0 +1,76 @@
+
+================ LAMP -Linux Apache(2.4) ========================================================
+
+# apt -y update & apt -y upgrade
+# apt -y install apache2* 
+# apt search apache2
+# systemctl start apache2 ; systemctl enable apache2 ; systemctl status apache2
+
+    http://13.232.187.168/
+
+
+================================== MariaDB 10.1  ================================================
+
+# apt-get install software-properties-common 
+# apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+# add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirror.rise.ph/mariadb/repo/10.1/ubuntu bionic main'
+# apt update
+# apt install mariadb-server firewalld
+#  vi /etc/mysql/my.cnf
+	[mysqld]
+		character-set-server=utf8
+# systemctl start mariadb ; systemctl enable mariadb ; systemctl status mariadb
+# systemctl start firewalld ; systemctl enable firewalld ; systemctl status firewalld
+# mysql -u root -p
+	   
+	MariaDB [(none)]> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+	MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+	MariaDB [(none)]> CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';
+	MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;
+	MariaDB [(none)]> SHOW PROCESSLIST;
+	MariaDB [(none)]> SHOW FULL PROCESSLIST
+	MariaDB [(none)]> SELECT user,authentication_string,plugin,host FROM mysql.user;
+	MariaDB [(none)]> SET PASSWORD 'root'@'localhost'=PASSWORD('mynewpasword');
+	MariaDB [(none)]> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'mynewpassword';
+	MariaDB [(none)]> FLUSH PRIVILEGES;	
+	MariaDB [(none)]> exit;
+	
+# firewall-cmd --zone=public --permanent --add-port=3306/tcp
+# firewall-cmd --reload
+# mysql -V 
+
+================ LAMP -Linux PHP(7.3) ========================================================
+
+# apt show php
+# apt -y install php
+# apt -y install software-properties-common
+# add-apt-repository ppa:ondrej/php
+# apt -y  update
+# apt -y  install php7.3
+# apt -y install php7.3-cli php7.3-xml php7.3-mysql
+# php -v 
+# update-alternatives --set php /usr/bin/php7.3
+# php -i | grep "Loaded Configuration File"
+# echo '<?php phpinfo(); ?>' > /var/www/html/info.php
+# systemctl restart apache2 ; systemctl enable apache2 ; systemctl status apache2
+
+    http://13.232.187.168/info.php
+
+================ Firewall Configuration ========================================================
+
+# apt -y install firewalld
+# systemctl start firewalld ; systemctl enable firewalld ; systemctl status firewalld
+# firewall-cmd --zone=public --permanent --add-port=3306/tcp --add-port=80/tcp --add-port=443/tcp
+# firewall-cmd --reload
+# firewall-cmd --list-port 
+
+
+================ PHP MyAdmin ===================================================================
+
+# apt -y install phpmyadmin php-mbstring php-gettext
+# phpenmod mbstring
+# systemctl restart apache2 ; systemctl enable apache2 ; systemctl status apache2
+
+    http://35.154.101.196/phpmyadmin/index.php
+
+=================================================================================================

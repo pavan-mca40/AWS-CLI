@@ -1,0 +1,23 @@
+i-04fd213507afc2709
+
+yum groupinstall 'Server with GUI'
+   25  clear
+   26  systemctl set-default graphical.target
+   27  systemctl isolate graphical.target
+   28  reboot
+   29  systemctl daemon-reload
+   30  systemctl start vncserver@:3.service
+   31  systemctl enable vncserver@:3.service
+   32  systemctl status vncserver@:3.service
+   33  lsblk
+   34  useradd vnc
+   35  passwd
+   36  yum install firewalld
+   37  yum install tiger-vnc
+   38  yum install tigervnc-server
+   39  cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:3.service
+   40  firewall-cmd --permanent --zone=public --add-port=5903/tcp
+   41  firewall-cmd --reload
+   42  vi /etc/systemd/system/vncserver@:3.service
+   43  su - vnc
+   44  reboot
